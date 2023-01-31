@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+
 app.get("/", function (req, res)
 {res.render("home", {homeStartingContent: homeStartingContent, posts : posts});
 });
@@ -43,6 +44,14 @@ app.post("/compose",function (req, res) { // if someone post in /compose
   res.redirect("/")
 })
 
+app.get("/posts/:postsName",function (req, res){
+  posts.forEach(function (post) { // iterating through the posts Array and every single post
+    if(post.title === req.params.postsName){ // get title and compare to the Dynamic URL param
+      console.log("Match found!")
+    }
+  })
+
+})
 
 
 
